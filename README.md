@@ -1,5 +1,5 @@
 # Dapp
-
+This is based on that election example by ....
 ## How this is gonna be ?
 
 ### What?
@@ -33,10 +33,7 @@ Contract:
     - Verify price and amount of money sent
     - Procede with the buying
     - Remove the object from the list  ? How ? 
-        - Duplicate its entry by lekhwa ? Does js lets u go over that array and find objects ?
-        - Or im gonna use indexes and when an object no longer exists :
-            - Either output that its sold
-            - Or just skip it
+		- Maybe add a field that says its sold or not ..
 - Add_Object function:
     - Verify all fields are 3amren
     - Verify duplicate objects 
@@ -52,6 +49,6 @@ UI:
         - Takes you to page with a form to fill to add the object
 
 ### Progress:
-0% so far.
+- Exchange contract partly working: Not sure if the money gets transfered ...
 ### Version2?
 - Make it similar to EBay. Post what you want, people will bid on it and then you can sell after sometime.
