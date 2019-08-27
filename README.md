@@ -51,6 +51,7 @@ UI:
     - Add:
         - Takes you to page with a form to fill to add the object
 
-
+### Progress:
+0% so far.
 ### Version2?
 - Make it similar to EBay. Post what you want, people will bid on it and then you can sell after sometime.
