@@ -107,9 +107,9 @@ addItem: function() {
 	var addr = $('#owner').val()
 	
 	App.contracts.Exchange.deployed().then(function(instance) {
-      return instance.add_Item(name, desc, addr, price, { from: App.account });
+      return instance.add_Item(name, desc, addr, price, { from: App.account, gas:300000 });
     }).then(function(result) {
-		$('success').show();
+		$('#success').show();
     }).catch(function(err) {
       console.error(err);
     });

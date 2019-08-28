@@ -22,9 +22,7 @@
                   <p class="text-center">Loading Items...</p>
                </div>
                
-               <div id="success" style="display: none;">
-                  <p class="text-center">Item added successfuly</p>
-               </div>
+               
                
                <!-- Add Item Button -->
                <form onSubmit="$('#add').show();return false;">
@@ -35,7 +33,7 @@
                <!-- New items info form -->
                <div id="content" style="display: none;">
                   <div id="add" style="display: none;">
-                     <form onSubmit="App.addItem(); return false;">
+                     <form onSubmit="App.addItem();">
                         <div class="form-group">
                            <div class="form-group">
                               <label for="email">Name:</label>
@@ -59,6 +57,11 @@
                      </form>
                   </div>
                   
+                  <!-- Success Message -->
+                  <div id="success" style="display: none;">
+                  <p class="text-center">Item added successfuly</p>
+               </div>
+               
                   <!-- Products List -->
                   <table class="table">
                      <thead>

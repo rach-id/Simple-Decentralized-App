@@ -50,7 +50,8 @@ UI:
 
 ### Progress:
 - Exchange contract partly working: Not sure if the money gets transfered (doesnt) ... Error: "VM Exception while processing transaction: revert"
-- When adding item ... Out of Gas occurs
+
+- When adding item ... Out of Gas occurs : Solved
 
 ### Version2?
 - Make it similar to EBay. Post what you want, people will bid on it and then you can sell after sometime.
