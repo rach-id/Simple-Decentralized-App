@@ -17,22 +17,22 @@ App = {
       App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
       web3 = new Web3(App.web3Provider);
     }
-    return App.initContract();
+    return App.initContract(); // Goto initContract function
   },
 
   initContract: function() {
-    $.getJSON("Election.json", function(election) {
+    $.getJSON("Exchange.json", function(exchange) {
       // Instantiate a new truffle contract from the artifact
-      App.contracts.Election = TruffleContract(election);
+      App.contracts.Exchange = TruffleContract(exchange);
       // Connect provider to interact with contract
-      App.contracts.Election.setProvider(App.web3Provider);
+      App.contracts.Exchange.setProvider(App.web3Provider);
 
       return App.render();
     });
   },
 
 render: function() {
-  var electionInstance;
+  var exchangeInstance;
   var loader = $("#loader");
   var content = $("#content");
 
@@ -48,36 +48,36 @@ render: function() {
   });
 
   // Load contract data
-  App.contracts.Election.deployed().then(function(instance) {
-    electionInstance = instance;
-    return electionInstance.candidatesCount();
-  }).then(function(candidatesCount) {
-    var candidatesResults = $("#candidatesResults");
-    candidatesResults.empty();
+  App.contracts.Exchange.deployed().then(function(instance) {
+    exchangeInstance = instance;
+    return exchangeInstance.itemsCount();
+  }).then(function(itemsCount) {
+    var itemsResults = $("#itemsResults");
+    itemsResults.empty();
 
-    var candidatesSelect = $('#candidatesSelect');
+    var candidatesSelect = $('#itemsSelect');
     candidatesSelect.empty();
 
-    for (var i = 1; i <= candidatesCount; i++) {
-      electionInstance.candidates(i).then(function(candidate) {
-        var id = candidate[0];
-        var name = candidate[1];
-        var voteCount = candidate[2];
+    for (var i = 0; i < itemsCount; i++) {
+      exchangeInstance.items(i).then(function(item) {
+        var id = item[0];
+        var name = item[1];
+        var desc = item[2];
+        var price = item[3];
+        var owner = item[4];
+        var available = item[5];
 
-        // Render candidate Result
-        var candidateTemplate = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + voteCount + "</td></tr>"
-        candidatesResults.append(candidateTemplate);
+		if (available == "false") available = "No";
+		else available = "Yes";
+		
+        // Render items Result
+        var itemTemplate = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + desc + "</th><td>" + price + "</th><td>" + owner + "</th><td>" + available + "</td></tr>"
+        itemsResults.append(itemTemplate);
 
         // Render candidate ballot option
-        var candidateOption = "<option value='" + id + "' >" + name + "</ option>"
-        candidatesSelect.append(candidateOption);
+        var itemOption = "<option value='" + id + "' >" + name + "</ option>"
+        candidatesSelect.append(itemOption);
       });
-    }
-    return electionInstance.voters(App.account);
-  }).then(function(hasVoted) {
-    // Do not allow a user to vote
-    if(hasVoted) {
-      $('form').hide();
     }
     loader.hide();
     content.show();
@@ -87,14 +87,29 @@ render: function() {
 
 
 }, 
-castVote: function() {
-    var candidateId = $('#candidatesSelect').val();
-    App.contracts.Election.deployed().then(function(instance) {
-      return instance.vote(candidateId, { from: App.account });
+buyItem: function() {
+    var itemID = $('#itemsSelect').val();
+    App.contracts.Exchange.deployed().then(function(instance) {
+      return instance.buy_Item(itemID, { from: App.account });
     }).then(function(result) {
-      // Wait for votes to update
+      // Wait for items to update
       $("#content").hide();
       $("#loader").show();
+    }).catch(function(err) {
+      console.error(err);
+    });
+  }, 
+addItem: function() {
+	
+	var name = $('#name').val()
+	var desc = $('#desc').val()
+	var price = $('#price').val()
+	var addr = $('#owner').val()
+	
+	App.contracts.Exchange.deployed().then(function(instance) {
+      return instance.add_Item(name, desc, addr, price, { from: App.account });
+    }).then(function(result) {
+		$('success').show();
     }).catch(function(err) {
       console.error(err);
     });

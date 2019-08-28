@@ -6,8 +6,8 @@ contract Exchange {
     struct Item {
         uint id;
         string name;
-        uint price;
         string description;
+        uint price;
         address payable owner;
         bool sold;
     }
@@ -19,13 +19,14 @@ contract Exchange {
     uint public itemsCount;
 
     constructor () public {
-        itemsCount = 0;
+    	add_Item ("Item1", "Desc1", 0xb5e590C4375e1a8BBBE28c179f1E7987CD86EeF5, 20);
+        itemsCount = 1;
     }
 
     function add_Item (string memory _name, string memory _desc, address payable _owner, uint _price) public{
         // TODO: Add fields verifications
         // TODO: verify duplicate objects (by name) 
-        Item memory  t_item = Item (itemsCount, _name, _price, _desc, _owner, false);
+        Item memory  t_item = Item (itemsCount, _name, _desc, _price, _owner, false);
         items[itemsCount] = t_item;
         itemsCount++;
     }

@@ -49,6 +49,8 @@ UI:
         - Takes you to page with a form to fill to add the object
 
 ### Progress:
-- Exchange contract partly working: Not sure if the money gets transfered ...
+- Exchange contract partly working: Not sure if the money gets transfered (doesnt) ... Error: "VM Exception while processing transaction: revert"
+- When adding item ... Out of Gas occurs
+
 ### Version2?
 - Make it similar to EBay. Post what you want, people will bid on it and then you can sell after sometime.
