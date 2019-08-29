@@ -53,5 +53,8 @@ UI:
 
 - When adding item ... Out of Gas occurs : Solved
 
+- Metamask Problem: After getting the instance of web3.. i cant get the account iam using ==> Transactions not working .. (line15, 16 should be in the else ... ToBe Fixed)
+
+
 ### Version2?
 - Make it similar to EBay. Post what you want, people will bid on it and then you can sell after sometime.

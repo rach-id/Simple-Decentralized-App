@@ -10,12 +10,15 @@ App = {
   initWeb3: function() {
     if (typeof web3 !== 'undefined') {
       // If a web3 instance is already provided by Meta Mask.
-      App.web3Provider = web3.currentProvider;
-      web3 = new Web3(web3.currentProvider);
+      //App.web3Provider = web3.currentProvider;
+      //web3 = new Web3(web3.currentProvider);
+      App.web3Provider = new Web3.providers.HttpProvider('HTTP://127.0.0.1:7545');
+      web3 = new Web3(App.web3Provider);
     } else {
       // Specify default instance if no web3 instance provided
-      App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
-      web3 = new Web3(App.web3Provider);
+      // App.web3Provider = new Web3.providers.HttpProvider('HTTP://127.0.0.1:7545');
+      // web3 = new Web3(App.web3Provider);
+      
     }
     return App.initContract(); // Goto initContract function
   },
@@ -90,7 +93,7 @@ render: function() {
 buyItem: function() {
     var itemID = $('#itemsSelect').val();
     App.contracts.Exchange.deployed().then(function(instance) {
-      return instance.buy_Item(itemID, { from: App.account });
+      return instance.buy_Item(itemID, { from: App.account, gas:800000 });
     }).then(function(result) {
       // Wait for items to update
       $("#content").hide();
@@ -105,9 +108,9 @@ addItem: function() {
 	var desc = $('#desc').val()
 	var price = $('#price').val()
 	var addr = $('#owner').val()
-	
+
 	App.contracts.Exchange.deployed().then(function(instance) {
-      return instance.add_Item(name, desc, addr, price, { from: App.account, gas:300000 });
+      return instance.add_Item(name, desc, addr, price, { from: App.account, gas:800000 });
     }).then(function(result) {
 		$('#success').show();
     }).catch(function(err) {
