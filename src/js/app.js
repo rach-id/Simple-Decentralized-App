@@ -70,8 +70,10 @@ render: function() {
         var owner = item[4];
         var available = item[5];
 
-		if (available == "false") available = "No";
-		else available = "Yes";
+		console.log(available);
+		
+		if (available == true) available = "No";
+		else if (available == false) available = "Yes";
 		
         // Render items Result
         var itemTemplate = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + desc + "</th><td>" + price + "</th><td>" + owner + "</th><td>" + available + "</td></tr>"
@@ -81,6 +83,9 @@ render: function() {
         var itemOption = "<option value='" + id + "' >" + name + "</ option>"
         candidatesSelect.append(itemOption);
       });
+      var pri ='ss'
+      exchangeInstance.items(i).then(function(item) {pri =item[3];});
+      console.log(pri);
     }
     loader.hide();
     content.show();
@@ -93,7 +98,8 @@ render: function() {
 buyItem: function() {
     var itemID = $('#itemsSelect').val();
     App.contracts.Exchange.deployed().then(function(instance) {
-      return instance.buy_Item(itemID, { from: App.account, gas:800000 });
+    
+      return instance.buy_Item(itemID, { from: App.account, gas:800000, value: 2 });
     }).then(function(result) {
       // Wait for items to update
       $("#content").hide();

@@ -19,7 +19,7 @@ contract Exchange {
     uint public itemsCount;
 
     constructor () public {
-    	add_Item ("Item1", "Desc1", 0xb5e590C4375e1a8BBBE28c179f1E7987CD86EeF5, 20);
+    	add_Item ("Item1", "Desc1", 0x8FB973565A620DB066B5791c42F84eCe8256e258, 20);
         itemsCount = 1;
     }
 
@@ -31,10 +31,12 @@ contract Exchange {
         itemsCount++;
     }
 
-    function buy_Item (uint _id) public {
+    function buy_Item (uint _id) payable public {
         // TODO: Verify object exists
+        require(_id < itemsCount);
+        require(0 <= _id);
         // TODO: Verify if price is enough to sell
-        items[_id].owner.transfer(items[_id].price); // Not sure of this will send the money...
+        items[_id].owner.transfer(items[_id].price * 1000000000000000000); // Not sure of this will send the money...
         items[_id].sold = true;
     }
 }

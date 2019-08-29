@@ -49,12 +49,13 @@ UI:
         - Takes you to page with a form to fill to add the object
 
 ### Progress:
-- Exchange contract partly working: Not sure if the money gets transfered (doesnt) ... Error: "VM Exception while processing transaction: revert"
+- Exchange contract partly working: Not sure if the money gets transfered (Does but we should specify how much in the code) ... VM Exception while processing transaction: revert (solved)
 
 - When adding item ... Out of Gas occurs : Solved
 
 - Metamask Problem: After getting the instance of web3.. i cant get the account iam using ==> Transactions not working .. (line15, 16 should be in the else ... ToBe Fixed)
 
+- Specifying how much eth to send with the transaciton (line 102 app.js) and how much gas (line 102, 119 app.js)
 
 ### Version2?
 - Make it similar to EBay. Post what you want, people will bid on it and then you can sell after sometime.
