@@ -56,6 +56,3 @@ UI:
 - Metamask Problem: After getting the instance of web3.. i cant get the account iam using ==> Transactions not working .. (line15, 16 should be in the else ... ToBe Fixed)
 
 - Specifying how much eth to send with the transaciton (line 102 app.js) and how much gas (line 102, 119 app.js)
-
-### Version2?
-- Make it similar to EBay. Post what you want, people will bid on it and then you can sell after sometime.
