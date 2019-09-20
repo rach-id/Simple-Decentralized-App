@@ -80,7 +80,7 @@ App = {
           var itemOption = "<option value='" + id + "' >" + name + "</ option>"
           candidatesSelect.append(itemOption);
         });
-        var pri = 'ss'
+        var pri = '';
         exchangeInstance.items(i).then(function(item) {
           pri = item[3];
         });
@@ -90,23 +90,25 @@ App = {
     }).catch(function(error) {
       console.warn(error);
     });
-
-
   },
   buyItem: function() {
     var itemID = $('#itemsSelect').val();
-    App.contracts.Exchange.deployed().then(function(instance) {
-
+    var price;
+    var instance;
+    App.contracts.Exchange.deployed().then(function(ins) {
+      instance = ins;
+      return instance.items(itemID);
+    }).then(function(a) {
+      price = a[3];
       return instance.buy_Item(itemID, {
         from: App.account,
         gas: 800000,
-        value: web3.toWei('2', 'ether')
+        value: web3.toWei(price, 'ether')
       });
     }).then(function(result) {
       // Wait for items to update
       $("#content").hide();
       $("#loader").show();
-      console.log(result);
     }).catch(function(err) {
       console.error(err);
     });
@@ -124,7 +126,6 @@ App = {
         gas: 800000
       });
     }).then(function(result) {
-      console.log(result);
       $('#success').show();
     }).catch(function(err) {
       console.error(err);
