@@ -36,7 +36,7 @@ contract Exchange {
     require(_id < itemsCount);
     require(0 <= _id);
     // TODO: Verify if price is enough to sell
-    items[_id].owner.transfer(items[_id].price); // Not sure of this will send the money...
+    items[_id].owner.transfer(items[_id].price * 1000000000000000000); // Not sure of this will send the money...
     items[_id].sold = true;
   }
 }

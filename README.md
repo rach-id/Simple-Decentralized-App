@@ -55,10 +55,10 @@ UI:
 
 ### Progress:
 
-- Exchange contract partly working: Not sure if the money gets transfered (Does but we should specify how much in the code) ... VM Exception while processing transaction: revert (solved)
+- Exchange contract partly working: Not sure if the money gets transfered (Does but we should specify how much in the code) ... VM Exception while processing transaction: revert : Solved
 
 - When adding item ... Out of Gas occurs : Solved
 
-- Metamask Problem: After getting the instance of web3.. i cant get the account iam using ==> Transactions not working .. (line15, 16 should be in the else ... ToBe Fixed)
+- Metamask Problem: After getting the instance of web3.. i cant get the account iam using ==> Transactions not working .. (line15, 16 should be in the else ... ToBe Fixed) : Solved
 
-- Specifying how much eth to send with the transaciton (line 102 app.js) and how much gas (line 102, 119 app.js)
+- Specifying how much eth to send with the transaciton (line 102 app.js) and how much gas (line 102, 119 app.js) : Solved
